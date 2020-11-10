@@ -18,8 +18,12 @@ public class Parser {
       String.format("%s%n%n", STATEMENT_TERMINATOR);
   public static void main(String... args) throws IOException {
       Parser parser = new Parser();
-      Schema schema = parser.parse(System.in);
-      System.out.println(parser.getDdl(schema));
+      System.out.println(parser.extract(System.in));
+  }
+
+  public String extract(InputStream input) throws IOException {
+    Schema schema = parse(input);
+    return getDdl(schema);
   }
 
   private Schema parse(InputStream input) throws IOException {
